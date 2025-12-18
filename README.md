@@ -1,119 +1,76 @@
 # CRUD API - Node.js & Express.js
 
-REST API ini digunakan untuk mengelola data kategori dan produk dengan memanfaatkan Node.js, Express.js, serta MySQL sebagai basis data.
+REST API sederhana untuk mengelola data **kategori** dan **produk** menggunakan **Node.js**, **Express.js**, dan **MySQL**.
 
-## Instalasi
+---
 
-### 1. Instalasi Dependensi
+## Endpoint Kategori (`/categories`)
 
-Jalankan perintah berikut untuk menginstal seluruh dependensi yang dibutuhkan:
+### Tambah Kategori
+**POST** `/categories`
 
-```bash
-npm install
-```
-
-### 2. Menyiapkan Database
-
-Buka MySQL, lalu jalankan query SQL yang terdapat pada file `database.sql`.
-
-### 3. Konfigurasi Environment Variable
-
-Lakukan pengaturan pada file `.env` sebagai berikut:
-
-```
-PORT=3000
-
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=
-DB_NAME=nodejs_workshop
-```
-
-### 4. Menjalankan Server
-
-Gunakan perintah di bawah ini untuk menjalankan server:
-
-```bash
-npm run dev
-```
-
-Server akan aktif dan dapat diakses melalui `http://localhost:3000`.
-
-## Daftar API Endpoint
-
-### Categories
-
-| Method | Endpoint          | Keterangan                        |
-| ------ | ----------------- | --------------------------------- |
-| GET    | `/categories`     | Mengambil seluruh data kategori   |
-| GET    | `/categories/:id` | Mengambil kategori berdasarkan ID |
-| POST   | `/categories`     | Menambahkan kategori baru         |
-| PUT    | `/categories/:id` | Memperbarui data kategori         |
-| DELETE | `/categories/:id` | Menghapus data kategori           |
-
-### Products
-
-| Method | Endpoint        | Keterangan                      |
-| ------ | --------------- | ------------------------------- |
-| GET    | `/products`     | Mengambil seluruh data produk   |
-| GET    | `/products/:id` | Mengambil produk berdasarkan ID |
-| POST   | `/products`     | Menambahkan produk baru         |
-| PUT    | `/products/:id` | Memperbarui data produk         |
-| DELETE | `/products/:id` | Menghapus data produk           |
-
-## Contoh Penggunaan Request
-
-### Menambahkan Kategori
-
-```bash
-POST /categories
-Content-Type: application/json
-
+Request Body:
+```json
 {
-  "name": "Makanan"
+  "name": "Mainan"
 }
-```
-
-### Menambahkan Produk
-
-```bash
-POST /products
-Content-Type: application/json
-
-{
-  "category_id": 1,
-  "name": "Nasi Goreng",
-  "price": 20000
-}
-```
-
-### Mengambil Seluruh Kategori
-
-```bash
+Response:
+Kategori berhasil ditambahkan
+Ambil Semua Kategori
 GET /categories
-```
 
-### Memperbarui Produk
+Menampilkan daftar kategori:
+id
+name
+created_at
+updated_at
+Update Kategori
+PUT /categories/:id
 
-```bash
-PUT /products/1
-Content-Type: application/json
+Request Body:
 
+json
+Copy code
 {
-  "category_id": 1,
-  "name": "Nasi Goreng",
-  "price": 25000
+  "name": "pakainan"
 }
-```
+Response:
+Kategori berhasil diupdate
+Hapus Kategori
+DELETE /categories/:id
 
-### Menghapus Kategori
+Response:
+Kategori berhasil dihapus
+Endpoint Produk (/products)
+Tambah Produk
+POST /products
 
-```bash
-DELETE /categories/1
-```
+Request Body:
+json
+Copy code
+{
+  "category_id": "1",
+  "name": "rubik",
+  "price": "50000"
+}
+Response:
+Produk berhasil ditambahkan
 
-## Pengujian Menggunakan Postman
 
-1. Import endpoint sesuai dengan tabel API di atas
-2. Sesuaikan request body untuk metode POST dan PUT
-3. Jalankan request dan periksa response yang diterima
+Update Produk
+PUT /products/:id
+Request Body:
+
+json
+{
+  "category_id": "1",
+  "name": "rubik",
+  "price": "30000"
+}
+Response:
+Produk berhasil diupdate
+Hapus Produk
+DELETE /products/:id
+
+Response:
+Produk berhasil dihapus
